@@ -11,7 +11,7 @@ const TOAST_BG = "/wedding.webp";
 const events = [
   {
     day: "Day 1",
-    date: "24th August 2026",
+    date: "24th October 2026",
     venue: "Groom's Residence",
     image: MEHENDI_BG,
     accent: "#2D8B4E",
@@ -21,7 +21,7 @@ const events = [
   },
   {
     day: "Day 2",
-    date: "25th August 2026",
+    date: "25th October 2026",
     venue: "Groom's Residence & TBD",
     image: HALDI_BG,
     accent: "#E5A829",
@@ -32,7 +32,7 @@ const events = [
   },
   {
     day: "Day 3",
-    date: "26th August 2026",
+    date: "26th October 2026",
     venue: "Lemon Tree Hotel, Bharatpur, Bhubaneswar",
     image: SANGEET_BG,
     accent: "#C9A84C",
@@ -43,7 +43,7 @@ const events = [
   },
   {
     day: "Day 4",
-    date: "27th August 2026",
+    date: "27th October 2026",
     venue: "Lemon Tree Hotel, Bharatpur, Bhubaneswar",
     image: TOAST_BG,
     accent: "#6B0F1A",

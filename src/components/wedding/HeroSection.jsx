@@ -6,7 +6,7 @@ import { WEDDING } from "../../constants/testIds";
    Time calculation utility
    ═══════════════════════════════════════ */
 const calculateTimeLeft = () => {
-  const weddingDate = new Date("2026-08-24T03:25:00+05:30");
+  const weddingDate = new Date("2026-10-24T03:25:00+05:30");
   const now = new Date();
   const diff = weddingDate - now;
 
@@ -281,7 +281,7 @@ const HeroSection = () => {
             fontSize: "var(--fs-2xl, 1.75rem)",
           }}
         >
-          24 — 27 August, 2026
+          24 — 27 October, 2026
         </h2>
       </motion.div>
 

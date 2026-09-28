@@ -67,7 +67,7 @@ const Footer = () => {
             fontWeight: 500,
           }}
         >
-          24 — 27 August 2026 &bull; Bhubaneswar, Odisha
+          24 — 27 October 2026 &bull; Bhubaneswar, Odisha
         </p>
 
         {/* Divider */}
