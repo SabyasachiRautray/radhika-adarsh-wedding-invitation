@@ -65,7 +65,7 @@ const EventTimeline = () => {
     stopAutoplay();
     autoplayRef.current = setInterval(() => {
       handleNext();
-    }, 6000); // 6 seconds per slide
+    }, 5000); // 7 seconds per slide
   };
 
   const stopAutoplay = () => {
@@ -125,6 +125,7 @@ const EventTimeline = () => {
       onMouseEnter={stopAutoplay}
       onMouseLeave={startAutoplay}
       onTouchStart={stopAutoplay}
+      onTouchEnd={startAutoplay}
     >
       {/* Background Image Crossfade */}
       <AnimatePresence initial={false}>
@@ -185,7 +186,18 @@ const EventTimeline = () => {
                 opacity: { duration: 0.4 },
                 scale: { duration: 0.4 }
               }}
-              className="w-full max-w-4xl bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(201,168,76,0.2)] rounded-3xl p-6 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] flex flex-col md:flex-row gap-8 items-center"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.8}
+              onDragEnd={(e, { offset, velocity }) => {
+                const swipe = offset.x;
+                if (swipe < -40) {
+                  handleNext();
+                } else if (swipe > 40) {
+                  handlePrev();
+                }
+              }}
+              className="w-full max-w-4xl bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(201,168,76,0.2)] rounded-3xl p-6 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] flex flex-col md:flex-row gap-8 items-center cursor-grab active:cursor-grabbing"
             >
               {/* Left side: Image Focus */}
               <div className="w-full md:w-1/2 relative group rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-video md:aspect-square shadow-2xl">
@@ -269,8 +281,8 @@ const EventTimeline = () => {
               key={idx}
               onClick={() => handleDotClick(idx)}
               className={`relative px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 uppercase tracking-wider ${activeIndex === idx
-                  ? "bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] shadow-[0_0_15px_rgba(201,168,76,0.4)]"
-                  : "bg-[rgba(255,255,255,0.1)] text-white hover:bg-[rgba(255,255,255,0.2)]"
+                ? "bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] shadow-[0_0_15px_rgba(201,168,76,0.4)]"
+                : "bg-[rgba(255,255,255,0.1)] text-white hover:bg-[rgba(255,255,255,0.2)]"
                 }`}
             >
               Day {idx + 1}
