@@ -309,28 +309,29 @@ const MusicToggle = ({ autoPlay = true }) => {
   }, [stopSynth]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-[90] flex items-center gap-3">
+    <div className="fixed bottom-5 right-5 z-[90] flex items-center gap-2.5">
       {/* Sound Waves & Label visible when playing */}
       <AnimatePresence>
         {isPlaying && (
           <motion.div
-            initial={{ opacity: 0, x: 20, scale: 0.9 }}
+            initial={{ opacity: 0, x: 15, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 15, scale: 0.9 }}
-            className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-full shadow-md backdrop-blur-md"
+            exit={{ opacity: 0, x: 10, scale: 0.9 }}
+            className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-full"
             style={{
-              backgroundColor: "rgba(255, 255, 255, 0.92)",
-              border: "1.5px solid rgba(212, 175, 55, 0.6)",
-              boxShadow: "0 4px 15px rgba(128, 0, 0, 0.12)",
+              backgroundColor: "rgba(255,254,248,0.92)",
+              border: "1px solid rgba(201,168,76,0.40)",
+              boxShadow: "0 4px 16px rgba(107,15,26,0.10)",
+              backdropFilter: "blur(12px)",
             }}
           >
             {/* Animated Equalizer Sound Bars */}
-            <div className="flex items-end gap-0.5 h-3.5 w-4">
-              {[0.4, 0.8, 0.5, 0.9].map((delay, idx) => (
+            <div className="flex items-end gap-[2px] h-3 w-4">
+              {[0.3, 0.7, 0.4, 0.8].map((delay, idx) => (
                 <motion.span
                   key={idx}
-                  className="w-1 rounded-full"
-                  style={{ backgroundColor: "#800000" }}
+                  className="w-[3px] rounded-full"
+                  style={{ backgroundColor: "var(--clr-maroon, #6B0F1A)" }}
                   animate={{ height: ["20%", "100%", "30%", "80%", "20%"] }}
                   transition={{
                     duration: 1.1,
@@ -343,13 +344,17 @@ const MusicToggle = ({ autoPlay = true }) => {
             </div>
 
             <span
-              className="text-xs font-semibold tracking-wide whitespace-nowrap"
-              style={{ fontFamily: "'Outfit', sans-serif", color: "#800000" }}
+              className="font-semibold tracking-wide whitespace-nowrap"
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                color: "var(--clr-maroon, #6B0F1A)",
+                fontSize: "var(--fs-xs, 0.65rem)",
+              }}
             >
-              Shatamanam Bhavati BGM
+              Now Playing
             </span>
 
-            <Sparkles size={13} color="#D4AF37" className="animate-pulse" />
+            <Sparkles size={12} style={{ color: "var(--clr-gold, #C9A84C)" }} className="animate-pulse" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -358,11 +363,11 @@ const MusicToggle = ({ autoPlay = true }) => {
       <motion.button
         data-testid={WEDDING.musicToggle}
         onClick={toggleMusic}
-        className="w-12 h-12 rounded-full flex items-center justify-center shadow-xl relative overflow-hidden"
+        className="w-11 h-11 rounded-full flex items-center justify-center relative overflow-hidden cursor-pointer"
         style={{
-          backgroundColor: "#800000",
-          border: "2px solid #D4AF37",
-          boxShadow: "0 6px 20px rgba(128, 0, 0, 0.3)",
+          background: "var(--grad-maroon, linear-gradient(135deg, #6B0F1A, #3D0814))",
+          border: "2px solid var(--clr-gold, #C9A84C)",
+          boxShadow: "0 4px 16px rgba(107,15,26,0.30), var(--shadow-glow-gold, 0 0 20px rgba(201,168,76,0.15))",
         }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.92 }}
@@ -385,7 +390,7 @@ const MusicToggle = ({ autoPlay = true }) => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
               >
-                <Music size={20} color="#D4AF37" />
+                <Music size={18} style={{ color: "var(--clr-gold-bright, #E5C76B)" }} />
               </motion.div>
             </motion.div>
           ) : (
@@ -396,7 +401,7 @@ const MusicToggle = ({ autoPlay = true }) => {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <VolumeX size={20} color="#FDE68A" />
+              <VolumeX size={18} style={{ color: "var(--clr-gold-bright, #E5C76B)" }} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -405,8 +410,8 @@ const MusicToggle = ({ autoPlay = true }) => {
         {!isPlaying && (
           <motion.div
             className="absolute inset-0 rounded-full"
-            style={{ border: "2px solid #D4AF37" }}
-            animate={{ scale: [1, 1.45, 1.45], opacity: [0.7, 0, 0] }}
+            style={{ border: "2px solid var(--clr-gold, #C9A84C)" }}
+            animate={{ scale: [1, 1.45, 1.45], opacity: [0.6, 0, 0] }}
             transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
           />
         )}

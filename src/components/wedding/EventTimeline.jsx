@@ -1,7 +1,7 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { WEDDING } from "../../constants/testIds";
-import { MapPin, Clock, CalendarDays, Shirt } from "lucide-react";
+import { MapPin, Clock, CalendarDays, Shirt, ChevronRight, ChevronLeft } from "lucide-react";
 
 const HALDI_BG = "/haldi.webp";
 const SANGEET_BG = "/reception.webp";
@@ -12,242 +12,279 @@ const events = [
   {
     day: "Day 1",
     date: "24th August 2026",
-    venue: "Sec B/43, Bandamunda, Railway Quarters",
-    image: HALDI_BG,
+    venue: "Groom's Residence",
+    image: MEHENDI_BG,
+    accent: "#2D8B4E",
     items: [
-      { name: "Raata & Pellikuthuru", time: "8:00 AM - 9:00 AM" },
-      { name: "Haldi", time: "9:00 AM Onwards", dressCode: "Yellow" },
+      { name: "Mehendi", time: "Throughout the day", dressCode: "Green" },
     ],
   },
   {
     day: "Day 2",
     date: "25th August 2026",
-    venue: "Community Hall, Bandamunda",
-    image: MEHENDI_BG,
+    venue: "Groom's Residence & TBD",
+    image: HALDI_BG,
+    accent: "#E5A829",
     items: [
-      { name: "Mehendi / Sangeet", time: "5:30 PM", dressCode: "Green" },
+      { name: "Haldi", time: "9:00 AM", dressCode: "Yellow" },
+      { name: "Sangeet", time: "6:00 PM Onwards (Venue TBD)", dressCode: "Festive" },
     ],
   },
   {
     day: "Day 3",
     date: "26th August 2026",
-    venue: "Community Hall, Bandamunda",
+    venue: "Lemon Tree Hotel, Bharatpur, Bhubaneswar",
     image: SANGEET_BG,
+    accent: "#C9A84C",
     items: [
-      { name: "Reception", time: "7:30 PM" },
+      { name: "Baraat", time: "5:30 PM" },
+      { name: "Reception", time: "Followed by Baraat", dressCode: "Formal/Traditional" },
     ],
   },
   {
     day: "Day 4",
     date: "27th August 2026",
-    venue: "Community Hall, Bandamunda",
+    venue: "Lemon Tree Hotel, Bharatpur, Bhubaneswar",
     image: TOAST_BG,
+    accent: "#6B0F1A",
     items: [
-      { name: "Wedding Ceremony", time: "3:25 AM (Shubh Muhurat)" },
+      { name: "Marriage Muhurat", time: "Early 4:00 AM" },
     ],
   },
 ];
 
-const TimelineCard = ({ event, index }) => {
-  const isLeft = index % 2 === 0;
-
-  return (
-    <motion.div
-      data-testid={`${WEDDING.eventCard}-${index}`}
-      className={`relative flex flex-col md:flex-row items-center gap-6 md:gap-0 mb-16 md:mb-24 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"
-        }`}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay: 0.1 }}
-    >
-      {/* Card content */}
-      <div className={`w-full md:w-5/12 ${isLeft ? "md:pr-12" : "md:pl-12"}`}>
-        <div
-          className="rounded-2xl overflow-hidden"
-          style={{
-            backgroundColor: "#FFFFFF",
-            boxShadow: "0 10px 30px rgba(128,0,0,0.1)",
-            border: "1.5px solid rgba(212,175,55,0.4)",
-          }}
-        >
-          {/* Event image */}
-          <div className="relative h-52 sm:h-60 overflow-hidden">
-            <img
-              src={event.image}
-              alt={event.day}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 20%, rgba(128,0,0,0.75))",
-              }}
-            />
-            <div className="absolute bottom-4 left-4">
-              <span
-                className="text-xs sm:text-sm uppercase tracking-widest font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-md"
-                style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  color: "#FFF5C0",
-                  backgroundColor: "rgba(128, 0, 0, 0.85)",
-                  border: "1px solid rgba(212,175,55,0.5)",
-                }}
-              >
-                {event.day}
-              </span>
-            </div>
-          </div>
-
-          {/* Card body */}
-          <div className="p-6 sm:p-7">
-            <div className="flex items-center gap-2.5 mb-3">
-              <CalendarDays size={20} color="#D4AF37" className="stroke-[2.5]" />
-              <h3
-                className="text-xl sm:text-2xl font-bold tracking-wide"
-                style={{ fontFamily: "'Cormorant Garamond', serif", color: "#800000" }}
-              >
-                {event.date}
-              </h3>
-            </div>
-
-            <div className="flex items-start gap-2.5 mb-5 bg-amber-50/70 p-3 rounded-lg border border-amber-200/60">
-              <MapPin size={18} color="#800000" className="mt-0.5 flex-shrink-0 stroke-[2.5]" />
-              <p
-                className="text-sm sm:text-base font-semibold leading-snug"
-                style={{ fontFamily: "'Outfit', sans-serif", color: "#2D2424" }}
-              >
-                {event.venue}
-              </p>
-            </div>
-
-            <div className="space-y-3.5">
-              {event.items.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 p-3.5 bg-amber-50/40 rounded-r-xl"
-                  style={{ borderLeft: "4px solid #D4AF37" }}
-                >
-                  <div className="flex-1">
-                    <p
-                      className="text-lg sm:text-xl font-bold leading-snug"
-                      style={{ fontFamily: "'Cormorant Garamond', serif", color: "#800000" }}
-                    >
-                      {item.name}
-                    </p>
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-2">
-                      <div className="flex items-center gap-1.5">
-                        <Clock size={16} color="#B8860B" className="stroke-[2.5]" />
-                        <p
-                          className="text-sm sm:text-base font-medium"
-                          style={{ fontFamily: "'Outfit', sans-serif", color: "#4A3B3B" }}
-                        >
-                          {item.time}
-                        </p>
-                      </div>
-                      {item.dressCode && (
-                        <div
-                          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-sm font-semibold shadow-xs"
-                          style={{
-                            backgroundColor: item.dressCode.toLowerCase().includes("yellow")
-                              ? "#FFFBEB"
-                              : item.dressCode.toLowerCase().includes("green")
-                                ? "#F0FDF4"
-                                : "#FFFBEB",
-                            color: item.dressCode.toLowerCase().includes("yellow")
-                              ? "#854D0E"
-                              : item.dressCode.toLowerCase().includes("green")
-                                ? "#14532D"
-                                : "#800000",
-                            border: `1.5px solid ${
-                              item.dressCode.toLowerCase().includes("yellow")
-                                ? "#D4AF37"
-                                : item.dressCode.toLowerCase().includes("green")
-                                  ? "#22C55E"
-                                  : "#D4AF37"
-                            }`,
-                            fontFamily: "'Outfit', sans-serif",
-                          }}
-                        >
-                          <Shirt size={16} className="stroke-[2.5]" />
-                          <span>Dress Code: <strong className="font-bold">{item.dressCode}</strong></span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Timeline center dot - visible only on desktop */}
-      <div className="hidden md:flex md:w-2/12 justify-center relative">
-        <motion.div
-          className="w-5 h-5 rounded-full z-10"
-          style={{
-            backgroundColor: "#D4AF37",
-            border: "3px solid #FFFFFF",
-            boxShadow: "0 0 0 3px #800000, 0 0 10px rgba(212,175,55,0.5)",
-          }}
-          whileInView={{ scale: [0, 1.3, 1] }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        />
-      </div>
-
-      {/* Spacer for opposite side */}
-      <div className="hidden md:block md:w-5/12" />
-    </motion.div>
-  );
-};
-
+/* ═══════════════════════════════════════════════════════
+   EVENT TIMELINE — Interactive Story / Glassmorphism Slider
+   ═══════════════════════════════════════════════════════ */
 const EventTimeline = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const autoplayRef = useRef(null);
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    autoplayRef.current = setInterval(() => {
+      handleNext();
+    }, 6000); // 6 seconds per slide
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayRef.current) {
+      clearInterval(autoplayRef.current);
+    }
+  };
+
+  useEffect(() => {
+    startAutoplay();
+    return stopAutoplay;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex]);
+
+  const handleNext = () => {
+    setDirection(1);
+    setActiveIndex((prev) => (prev + 1) % events.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setActiveIndex((prev) => (prev - 1 + events.length) % events.length);
+  };
+
+  const handleDotClick = (index) => {
+    setDirection(index > activeIndex ? 1 : -1);
+    setActiveIndex(index);
+  };
+
+  const currentEvent = events[activeIndex];
+
+  // Animation variants
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.9,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.9,
+    }),
+  };
+
   return (
     <section
       data-testid={WEDDING.eventTimeline}
-      className="relative py-20 sm:py-28 px-6"
-      style={{ backgroundColor: "#FAF9F6" }}
+      className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-[var(--clr-maroon-deep)]"
+      onMouseEnter={stopAutoplay}
+      onMouseLeave={startAutoplay}
+      onTouchStart={stopAutoplay}
     >
-      {/* Section title */}
-      <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <p
-          className="text-sm sm:text-base uppercase tracking-[0.25em] font-bold mb-3"
-          style={{ fontFamily: "'Outfit', sans-serif", color: "#800000" }}
+      {/* Background Image Crossfade */}
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={activeIndex}
+          className="absolute inset-0 w-full h-full"
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 0.4, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
         >
-          Wedding Celebrations
-        </p>
-        <h2
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold"
-          style={{ fontFamily: "'Great Vibes', cursive", color: "#800000" }}
-        >
-          Our Journey of Celebrations
-        </h2>
-        <div
-          className="mx-auto mt-4 w-28 h-1 rounded-full"
-          style={{ backgroundColor: "#D4AF37" }}
-        />
-      </motion.div>
+          <img
+            src={currentEvent.image}
+            alt="Event Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--clr-maroon-deep)] via-transparent to-[var(--clr-maroon-deep)] opacity-80" />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Timeline */}
-      <div className="max-w-5xl mx-auto relative">
-        {/* Vertical line - desktop only */}
-        <div
-          className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 rounded-full"
-          style={{ backgroundColor: "#D4AF37", opacity: 0.4 }}
-        />
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 h-full flex flex-col">
 
-        {events.map((event, index) => (
-          <TimelineCard key={index} event={event} index={index} />
-        ))}
+        {/* Section Header */}
+        <div className="text-center mb-8 sm:mb-12">
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="uppercase tracking-[0.25em] font-bold mb-2"
+            style={{ color: "var(--clr-gold)", fontSize: "var(--fs-xs, 0.7rem)" }}
+          >
+            Wedding Celebrations
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            style={{
+              fontFamily: "'Great Vibes', cursive",
+              color: "var(--clr-ivory)",
+              fontSize: "var(--fs-3xl, 2.5rem)",
+            }}
+          >
+            Our Journey of Celebrations
+          </motion.h2>
+        </div>
+
+        {/* Main Content Area - Glassmorphism Card */}
+        <div className="flex-1 flex items-center justify-center relative min-h-[450px]">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={activeIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.4 },
+                scale: { duration: 0.4 }
+              }}
+              className="w-full max-w-4xl bg-[rgba(255,255,255,0.05)] backdrop-blur-xl border border-[rgba(201,168,76,0.2)] rounded-3xl p-6 sm:p-10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] flex flex-col md:flex-row gap-8 items-center"
+            >
+              {/* Left side: Image Focus */}
+              <div className="w-full md:w-1/2 relative group rounded-2xl overflow-hidden aspect-[4/3] sm:aspect-video md:aspect-square shadow-2xl">
+                <img
+                  src={currentEvent.image}
+                  alt={currentEvent.day}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <span className="inline-block px-3 py-1 bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] text-xs font-bold uppercase tracking-widest rounded-full mb-2">
+                    {currentEvent.day}
+                  </span>
+                  <h3 className="text-white font-serif text-2xl sm:text-3xl font-bold drop-shadow-md">
+                    {currentEvent.date}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Right side: Event Details */}
+              <div className="w-full md:w-1/2 flex flex-col text-[var(--clr-ivory)]">
+
+                <div className="flex items-start gap-3 mb-6 bg-[rgba(255,255,255,0.1)] p-4 rounded-xl border border-[rgba(255,255,255,0.05)]">
+                  <MapPin className="text-[var(--clr-gold)] mt-1 flex-shrink-0" size={20} />
+                  <p className="font-sans text-sm sm:text-base leading-relaxed">
+                    {currentEvent.venue}
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  {currentEvent.items.map((item, i) => (
+                    <div
+                      key={i}
+                      className="relative pl-6 border-l-2 border-[var(--clr-gold)]"
+                    >
+                      <div className="absolute -left-[5px] top-1.5 w-2 h-2 rounded-full bg-[var(--clr-gold)]" />
+                      <h4 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--clr-gold-bright)] mb-2">
+                        {item.name}
+                      </h4>
+                      <div className="flex flex-wrap items-center gap-4">
+                        <div className="flex items-center gap-1.5 text-gray-300">
+                          <Clock size={16} />
+                          <span className="font-sans text-sm">{item.time}</span>
+                        </div>
+                        {item.dressCode && (
+                          <div className="flex items-center gap-1.5 bg-[rgba(255,255,255,0.1)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.2)]">
+                            <Shirt size={14} className="text-gray-300" />
+                            <span className="font-sans text-xs font-medium text-gray-200">
+                              Dress: <strong className="text-white">{item.dressCode}</strong>
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation Arrows (Desktop) */}
+          <button
+            onClick={handlePrev}
+            className="hidden md:flex absolute left-0 z-20 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.1)] hover:bg-[var(--clr-gold)] hover:text-[var(--clr-maroon-deep)] border border-[rgba(255,255,255,0.2)] items-center justify-center text-white transition-all duration-300 backdrop-blur-md"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={handleNext}
+            className="hidden md:flex absolute right-0 z-20 w-12 h-12 rounded-full bg-[rgba(255,255,255,0.1)] hover:bg-[var(--clr-gold)] hover:text-[var(--clr-maroon-deep)] border border-[rgba(255,255,255,0.2)] items-center justify-center text-white transition-all duration-300 backdrop-blur-md"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+
+        {/* Bottom Navigation Tabs / Dots */}
+        <div className="mt-8 flex flex-wrap justify-center gap-3 sm:gap-4 z-20">
+          {events.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => handleDotClick(idx)}
+              className={`relative px-4 py-2 sm:px-6 sm:py-2.5 rounded-full font-sans text-xs sm:text-sm font-semibold transition-all duration-300 uppercase tracking-wider ${activeIndex === idx
+                  ? "bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] shadow-[0_0_15px_rgba(201,168,76,0.4)]"
+                  : "bg-[rgba(255,255,255,0.1)] text-white hover:bg-[rgba(255,255,255,0.2)]"
+                }`}
+            >
+              Day {idx + 1}
+              {activeIndex === idx && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 rounded-full border-2 border-[var(--clr-gold-bright)] -m-1"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </button>
+          ))}
+        </div>
+
       </div>
     </section>
   );

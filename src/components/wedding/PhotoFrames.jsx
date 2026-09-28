@@ -1,157 +1,185 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { WEDDING } from "../../constants/testIds";
-import { Camera } from "lucide-react";
 
 const BRIDE_PHOTO = "/bride.webp";
 const GROOM_PHOTO = "/groom.webp";
 const COUPLE_PHOTO = "/couple.webp";
 
-const ArchFrame = ({ testId, label, imgSrc, delay = 0 }) => {
-  const [isLoaded, setIsLoaded] = React.useState(false);
-
-  return (
-    <motion.div
-      data-testid={testId}
-      className="flex flex-col items-center gap-4"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, delay }}
-    >
-      <div
-        className="relative w-48 h-64 sm:w-56 sm:h-72 lg:w-64 lg:h-80 overflow-hidden"
-        style={{
-          borderRadius: "50% 50% 4px 4px / 40% 40% 4px 4px",
-          padding: "6px",
-          background: "linear-gradient(135deg, #D4AF37, #800000, #D4AF37)",
-        }}
-      >
-        <div
-          className="w-full h-full overflow-hidden relative"
-          style={{
-            borderRadius: "50% 50% 2px 2px / 40% 40% 2px 2px",
-            backgroundColor: "#FFFDD0",
-          }}
-        >
-          {/* Skeleton Shimmer Loading Animation */}
-          {!isLoaded && (
-            <motion.div
-              className="absolute inset-0 z-10 flex flex-col items-center justify-center"
-              style={{
-                background: "linear-gradient(110deg, #FAF9F6 30%, #FDE68A 50%, #FAF9F6 70%)",
-                backgroundSize: "200% 100%",
-              }}
-              animate={{
-                backgroundPosition: ["200% 0", "-200% 0"],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 1.8,
-                ease: "linear",
-              }}
-            >
-              <Camera size={28} className="opacity-40 animate-pulse text-[#800000]" />
-            </motion.div>
-          )}
-
-          <motion.img
-            src={imgSrc}
-            alt={label}
-            className="w-full h-full object-cover"
-            loading="lazy"
-            onLoad={() => setIsLoaded(true)}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: isLoaded ? 1 : 0, scale: isLoaded ? 1 : 1.05 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          />
-
-          {/* Hover Overlay */}
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-            style={{ backgroundColor: "rgba(128,0,0,0.4)" }}
-          >
-            <Camera size={24} color="#FFFDD0" />
-            <span
-              className="text-xs mt-2"
-              style={{ fontFamily: "'Outfit', sans-serif", color: "#FFFDD0" }}
-            >
-              {label}
-            </span>
-          </div>
-        </div>
-      </div>
-      <h3
-        className="text-xl sm:text-2xl"
-        style={{ fontFamily: "'Great Vibes', cursive", color: "#800000" }}
-      >
-        {label}
-      </h3>
-    </motion.div>
-  );
-};
-
+/* ═══════════════════════════════════════════════════
+   PHOTO FRAMES — Asymmetric Editorial Parallax Collage
+   ═══════════════════════════════════════════════════ */
 const PhotoFrames = () => {
+  const containerRef = useRef(null);
+
+  // Parallax effects tied to the scroll position of this section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Different parallax speeds for each element
+  const yCouple = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const yBride = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const yGroom = useTransform(scrollYProgress, [0, 1], [-20, 80]);
+  const rotateBride = useTransform(scrollYProgress, [0, 1], [-5, 5]);
+  const rotateGroom = useTransform(scrollYProgress, [0, 1], [5, -5]);
+
   return (
     <section
+      ref={containerRef}
       data-testid={WEDDING.photoSection}
-      className="relative py-20 sm:py-28 px-6 overflow-hidden"
-      style={{ backgroundColor: "#FFFDD0" }}
+      className="relative overflow-hidden ornate-border-top ornate-border-bottom"
+      style={{
+        backgroundColor: "var(--clr-cream-dark, #F5ECDA)",
+        padding: "var(--section-pad-y) 0", // Full width bleeding
+      }}
     >
-      {/* Section title */}
-      <motion.div
-        className="text-center mb-14"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <p
-          className="text-xs uppercase tracking-[0.25em] mb-3"
-          style={{ fontFamily: "'Outfit', sans-serif", color: "#5C4D4D" }}
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section title */}
+        <motion.div
+          className="text-center mb-10 md:mb-24 relative z-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          The Couple
-        </p>
-        <h2
-          className="text-3xl sm:text-4xl lg:text-5xl"
-          style={{ fontFamily: "'Great Vibes', cursive", color: "#800000" }}
-        >
-          Our Love Story
-        </h2>
-        <div
-          className="mx-auto mt-4 w-24 h-px"
-          style={{ backgroundColor: "#D4AF37" }}
-        />
-      </motion.div>
+          <p
+            className="uppercase tracking-[0.25em] mb-2"
+            style={{
+              fontFamily: "'Outfit', sans-serif",
+              color: "var(--clr-text-muted, #6B5C60)",
+              fontSize: "var(--fs-xs, 0.65rem)",
+              fontWeight: 600,
+            }}
+          >
+            The Couple
+          </p>
+          <h2
+            style={{
+              fontFamily: "'Great Vibes', cursive",
+              color: "var(--clr-maroon, #6B0F1A)",
+              fontSize: "var(--fs-3xl, 2.25rem)",
+            }}
+          >
+            Our Love Story
+          </h2>
+          <div
+            className="mx-auto mt-4"
+            style={{
+              width: "60px",
+              height: "2px",
+              background: "var(--grad-gold)",
+              borderRadius: "var(--radius-full)",
+            }}
+          />
+        </motion.div>
 
-      {/* Photo frames */}
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16">
-        <ArchFrame
-          testId={WEDDING.brideFrame}
-          label="Dhavala Sweta"
-          imgSrc={BRIDE_PHOTO}
-          delay={0.4}
-        />
-        <ArchFrame
-          testId={WEDDING.coupleFrame}
-          label="Together Forever"
-          imgSrc={COUPLE_PHOTO}
-          delay={0.2}
-        />
+        {/* Collage Container */}
+        <div className="relative w-full flex flex-col md:block items-center justify-center gap-16 md:gap-0 md:h-[800px] pt-4 pb-16 md:py-0">
+          
+          {/* Bride - Top Left (Floating overlapping on desktop, Top on mobile) */}
+          <motion.div
+            className="relative md:absolute z-20 w-[220px] h-[280px] md:w-[220px] md:h-[300px] md:left-[5%] lg:left-[15%] md:top-[10%] self-start md:self-auto ml-2 md:ml-0"
+            style={{ y: yBride, rotate: rotateBride }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          >
+            <div className="w-full h-full p-2 sm:p-3 bg-[var(--clr-ivory)] shadow-[0_10px_30px_rgba(61,8,20,0.2)] rounded-sm group">
+              <div className="w-full h-full overflow-hidden relative">
+                <img
+                  src={BRIDE_PHOTO}
+                  alt="Subhalaxmi Nayak"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute -bottom-4 -right-4 bg-[var(--clr-maroon)] text-[var(--clr-gold-bright)] px-4 py-1.5 rounded-sm shadow-lg rotate-[-5deg]">
+                <span className="font-display text-lg sm:text-xl">Subhalaxmi</span>
+              </div>
+            </div>
+          </motion.div>
 
-        <ArchFrame
-          testId={WEDDING.groomFrame}
-          label="Sai Harish Kumar"
-          imgSrc={GROOM_PHOTO}
-          delay={0}
-        />
+          {/* Couple - Center (Largest) */}
+          <motion.div
+            className="relative md:absolute z-10 w-[280px] h-[360px] md:w-[400px] md:h-[520px] md:left-[calc(50%-200px)] md:top-[calc(50%-260px)]"
+            style={{ y: yCouple }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <div className="w-full h-full relative group">
+              <div className="absolute inset-0 bg-[var(--clr-gold)] transform translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4 rounded-sm transition-transform duration-500 group-hover:translate-x-5 group-hover:translate-y-5" />
+              <div className="absolute inset-0 border-[3px] border-[var(--clr-ivory)] overflow-hidden rounded-sm shadow-2xl relative z-10">
+                <img
+                  src={COUPLE_PHOTO}
+                  alt="Together Forever"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--clr-maroon-deep)]/60 to-transparent opacity-60" />
+                <h3 
+                  className="absolute bottom-6 left-0 right-0 text-center z-20"
+                  style={{
+                    fontFamily: "'Great Vibes', cursive",
+                    color: "var(--clr-gold-bright, #E5C76B)",
+                    fontSize: "var(--fs-2xl, 1.75rem)",
+                    textShadow: "0 2px 4px rgba(0,0,0,0.5)"
+                  }}
+                >
+                  Together Forever
+                </h3>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Groom - Bottom Right (Floating overlapping on desktop, Bottom on mobile) */}
+          <motion.div
+            className="relative md:absolute z-20 w-[220px] h-[280px] md:w-[220px] md:h-[300px] md:right-[5%] lg:right-[15%] md:bottom-[10%] self-end md:self-auto mr-2 md:mr-0"
+            style={{ y: yGroom, rotate: rotateGroom }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+          >
+            <div className="w-full h-full p-2 sm:p-3 bg-[var(--clr-ivory)] shadow-[0_10px_30px_rgba(61,8,20,0.2)] rounded-sm group">
+              <div className="w-full h-full overflow-hidden relative">
+                <img
+                  src={GROOM_PHOTO}
+                  alt="Adarsh Kumar"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute -top-4 -left-4 bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] px-4 py-1.5 rounded-sm shadow-lg rotate-[5deg]">
+                <span className="font-display text-lg sm:text-xl font-semibold">Adarsh</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Floating Text Accents */}
+          <motion.div 
+            className="absolute z-0 left-[10%] bottom-[20%] opacity-40 hidden md:block"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.4 }}
+            transition={{ delay: 0.6 }}
+          >
+             <h4 style={{ fontFamily: "'Great Vibes', cursive", fontSize: "4rem", color: "var(--clr-gold)" }}>Two Souls</h4>
+          </motion.div>
+          <motion.div 
+            className="absolute z-0 right-[10%] top-[20%] opacity-40 hidden md:block"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 0.4 }}
+            transition={{ delay: 0.8 }}
+          >
+             <h4 style={{ fontFamily: "'Great Vibes', cursive", fontSize: "4rem", color: "var(--clr-maroon)" }}>One Heart</h4>
+          </motion.div>
+
+        </div>
       </div>
-
-      {/* Decorative bottom */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{ background: "linear-gradient(90deg, transparent, #D4AF37, transparent)" }}
-      />
     </section>
   );
 };
