@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { WEDDING } from "../../constants/testIds";
 
@@ -61,12 +61,7 @@ const FloatingParticle = ({ delay, x, size = 4 }) => (
    ENVELOPE INTRO — Premium Odia Wedding
    ═══════════════════════════════════════ */
 const EnvelopeIntro = ({ onOpen }) => {
-  const [showContent, setShowContent] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setShowContent(true), 300);
-    return () => clearTimeout(t);
-  }, []);
+  const showContent = true;
 
   return (
     <motion.div

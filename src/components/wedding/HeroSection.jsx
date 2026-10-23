@@ -6,7 +6,7 @@ import { WEDDING } from "../../constants/testIds";
    Time calculation utility
    ═══════════════════════════════════════ */
 const calculateTimeLeft = () => {
-  const weddingDate = new Date("2026-10-24T03:25:00+05:30");
+  const weddingDate = new Date("2026-11-24T18:00:00+05:30");
   const now = new Date();
   const diff = weddingDate - now;
 
@@ -236,7 +236,7 @@ const HeroSection = () => {
             lineHeight: 1.15,
           }}
         >
-          Subhalaxmi Nayak
+          Radhika (Subhalaxmi)
         </h1>
         <p
           className="mt-1"
@@ -247,7 +247,7 @@ const HeroSection = () => {
           }}
         >
           D/o. Mr. Mukund Ch. Nayak & Mrs. Mita Nayak<br />
-          <span style={{ fontSize: "0.85em", opacity: 0.8 }}>(Youngest daughter, Gobindpur, Dhenkanal)</span>
+          <span style={{ fontSize: "0.85em", opacity: 0.8 }}>(Youngest daughter &bull; Gobindpur, Dhenkanal)</span>
         </p>
       </motion.div>
 
@@ -281,7 +281,7 @@ const HeroSection = () => {
             fontSize: "var(--fs-2xl, 1.75rem)",
           }}
         >
-          24 — 27 October, 2026
+          24 — 27 November, 2026
         </h2>
       </motion.div>
 

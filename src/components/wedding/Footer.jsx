@@ -55,7 +55,7 @@ const Footer = () => {
             fontSize: "var(--fs-2xl, 1.75rem)",
           }}
         >
-          Subhalaxmi & Adarsh
+          Adarsh &amp; Radhika
         </h3>
 
         <p
@@ -67,7 +67,7 @@ const Footer = () => {
             fontWeight: 500,
           }}
         >
-          24 — 27 October 2026 &bull; Bhubaneswar, Odisha
+          24 — 27 November 2026 &bull; Bhubaneswar, Odisha
         </p>
 
         {/* Divider */}

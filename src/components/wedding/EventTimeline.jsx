@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WEDDING } from "../../constants/testIds";
-import { MapPin, Clock, CalendarDays, Shirt, ChevronRight, ChevronLeft } from "lucide-react";
+import { MapPin, Clock, Shirt, ChevronRight, ChevronLeft, Navigation } from "lucide-react";
 
 const HALDI_BG = "/haldi.webp";
 const SANGEET_BG = "/reception.webp";
@@ -11,44 +11,86 @@ const TOAST_BG = "/wedding.webp";
 const events = [
   {
     day: "Day 1",
-    date: "24th October 2026",
-    venue: "Groom's Residence",
+    date: "24th November 2026",
+    title: "मेहंदी",
+    tagline: "Pyar Ka Rang",
+    venue: "Our Residence Apartment Society Hall",
+    venueKey: "residence",
     image: MEHENDI_BG,
     accent: "#2D8B4E",
     items: [
-      { name: "Mehendi", time: "Throughout the day", dressCode: "Green" },
+      {
+        name: "मेहंदी (Mehendi) — Pyar Ka Rang",
+        time: "6:00 PM onwards",
+        location: "Our Residence Apartment Society Hall",
+        dressCode: "Festive Green / Ethnic",
+      },
     ],
   },
   {
     day: "Day 2",
-    date: "25th October 2026",
-    venue: "Groom's Residence & TBD",
+    date: "25th November 2026",
+    title: "हल्दी & शाम शानदार",
+    tagline: "Rango Ka Mela & Just Toast On The Coast",
+    venue: "Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+    venueKey: "lemon-tree",
     image: HALDI_BG,
     accent: "#E5A829",
     items: [
-      { name: "Haldi", time: "9:00 AM", dressCode: "Yellow" },
-      { name: "Sangeet", time: "6:00 PM Onwards (Venue TBD)", dressCode: "Festive" },
+      {
+        name: "हल्दी (Haldi) — Rango Ka Mela",
+        time: "10:00 AM onwards",
+        location: "Poolside, Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+        dressCode: "Vibrant Yellow / Sunny Traditional",
+      },
+      {
+        name: "शाम शानदार — Just Toast On The Coast",
+        time: "6:30 PM onwards",
+        location: "Tangerine Grand Hall 2, Hotel Lemon Tree, Bharatpur, BBSR",
+        dressCode: "Evening Cocktail & Glamour",
+      },
     ],
   },
   {
     day: "Day 3",
-    date: "26th October 2026",
-    venue: "Lemon Tree Hotel, Bharatpur, Bhubaneswar",
+    date: "26th November 2026",
+    title: "बारात & विवाह (Reception)",
+    tagline: "The Royal Chariot & The Sacred Union of Souls",
+    venue: "From Our Residence to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+    venueKey: "baraat-route",
     image: SANGEET_BG,
     accent: "#C9A84C",
     items: [
-      { name: "Baraat", time: "5:30 PM" },
-      { name: "Reception", time: "Followed by Baraat", dressCode: "Formal/Traditional" },
+      {
+        name: "बारात (Baraat) — The Royal Chariot",
+        time: "4:00 PM",
+        location: "From Our Residence to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+        dressCode: "Traditional / Regal",
+      },
+      {
+        name: "विवाह & Reception — The Sacred Union of Souls",
+        time: "7:30 PM onwards",
+        location: "Tangerine Grand Hall 1 & 2, (1st & 5th Floor), Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+        dressCode: "Royal Traditional Elegance",
+      },
     ],
   },
   {
     day: "Day 4",
-    date: "27th October 2026",
-    venue: "Lemon Tree Hotel, Bharatpur, Bhubaneswar",
+    date: "27th November 2026",
+    title: "शुभ विवाह मुहूर्त",
+    tagline: "The Auspicious Muhurtam",
+    venue: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+    venueKey: "lemon-tree",
     image: TOAST_BG,
     accent: "#6B0F1A",
     items: [
-      { name: "Marriage Muhurat", time: "Early 4:00 AM" },
+      {
+        name: "शुभ विवाह मुहूर्त (Wedding Muhurtam)",
+        time: "5:02 AM",
+        location: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree",
+        dressCode: "Traditional Auspicious Attire",
+      },
     ],
   },
 ];
@@ -237,11 +279,19 @@ const EventTimeline = () => {
                       <h4 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--clr-gold-bright)] mb-2">
                         {item.name}
                       </h4>
-                      <div className="flex flex-wrap items-center gap-4">
+                      <div className="flex flex-wrap items-center gap-3">
                         <div className="flex items-center gap-1.5 text-gray-300">
-                          <Clock size={16} />
-                          <span className="font-sans text-sm">{item.time}</span>
+                          <Clock size={16} className="text-[var(--clr-gold)]" />
+                          <span className="font-sans text-sm font-medium">{item.time}</span>
                         </div>
+                        {item.location && (
+                          <div className="flex items-center gap-1.5 bg-[rgba(201,168,76,0.15)] px-3 py-1 rounded-full border border-[rgba(201,168,76,0.3)]">
+                            <MapPin size={13} className="text-[var(--clr-gold-bright)]" />
+                            <span className="font-sans text-xs font-semibold text-[var(--clr-gold-bright)]">
+                              {item.location}
+                            </span>
+                          </div>
+                        )}
                         {item.dressCode && (
                           <div className="flex items-center gap-1.5 bg-[rgba(255,255,255,0.1)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.2)]">
                             <Shirt size={14} className="text-gray-300" />
@@ -253,6 +303,28 @@ const EventTimeline = () => {
                       </div>
                     </div>
                   ))}
+                </div>
+
+                {/* Centered View on Map Action */}
+                <div className="mt-6 pt-4 border-t border-[rgba(255,255,255,0.1)] flex justify-center items-center w-full">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.dispatchEvent(
+                        new CustomEvent("select-wedding-venue", {
+                          detail: { venueKey: currentEvent.venueKey },
+                        })
+                      );
+                      const el = document.getElementById("venue-location");
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-[var(--clr-maroon-deep)] bg-[var(--clr-gold)] hover:bg-[var(--clr-gold-bright)] shadow-[0_4px_16px_rgba(201,168,76,0.3)] transition-all duration-300 hover:scale-105 cursor-pointer text-center"
+                  >
+                    <Navigation size={14} />
+                    <span>View Venue on Map</span>
+                  </button>
                 </div>
 
               </div>

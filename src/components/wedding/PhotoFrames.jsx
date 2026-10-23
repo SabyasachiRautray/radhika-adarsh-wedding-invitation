@@ -92,7 +92,7 @@ const PhotoFrames = () => {
                 <img
                   src={BRIDE_PHOTO}
                   alt="Subhalaxmi Nayak"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover scale-145 transition-transform duration-700 group-hover:scale-[1.50]"
                   loading="lazy"
                 />
               </div>
@@ -121,7 +121,7 @@ const PhotoFrames = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--clr-maroon-deep)]/60 to-transparent opacity-60" />
-                <h3 
+                {/* <h3 
                   className="absolute bottom-6 left-0 right-0 text-center z-20"
                   style={{
                     fontFamily: "'Great Vibes', cursive",
@@ -131,7 +131,7 @@ const PhotoFrames = () => {
                   }}
                 >
                   Together Forever
-                </h3>
+                </h3> */}
               </div>
             </div>
           </motion.div>
