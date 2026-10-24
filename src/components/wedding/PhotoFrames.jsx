@@ -95,14 +95,15 @@ const PhotoFrames = () => {
             <div className="w-full h-full p-2 sm:p-3 bg-[var(--clr-ivory)] shadow-[0_10px_30px_rgba(61,8,20,0.2)] rounded-sm group">
               <div className="w-full h-full overflow-hidden relative">
                 <img
-                  src={BRIDE_PHOTO}
-                  alt="Radhika Nayak"
-                  className="w-full h-full object-cover scale-145 transition-transform duration-700 group-hover:scale-[1.50]"
+                  src={GROOM_PHOTO}
+                  alt="Adarsh"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
+
               </div>
               <div className="absolute -bottom-4 -right-4 bg-[var(--clr-maroon)] text-[var(--clr-gold-bright)] px-4 py-1.5 rounded-sm shadow-lg rotate-[-5deg]">
-                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display text-lg sm:text-xl">Radhika</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display text-lg sm:text-xl">Adarsh</span>
               </div>
             </div>
           </motion.div>
@@ -153,14 +154,14 @@ const PhotoFrames = () => {
             <div className="w-full h-full p-2 sm:p-3 bg-[var(--clr-ivory)] shadow-[0_10px_30px_rgba(61,8,20,0.2)] rounded-sm group">
               <div className="w-full h-full overflow-hidden relative">
                 <img
-                  src={GROOM_PHOTO}
-                  alt="Adarsh"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  src={BRIDE_PHOTO}
+                  alt="Radhika Nayak"
+                  className="w-full h-full object-cover scale-145 transition-transform duration-700 group-hover:scale-[1.50]"
                   loading="lazy"
                 />
               </div>
               <div className="absolute -top-4 -left-4 bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] px-4 py-1.5 rounded-sm shadow-lg rotate-[5deg]">
-                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display  text-lg sm:text-xl font-semibold">Adarsh</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display  text-lg sm:text-xl font-semibold">Radhika</span>
               </div>
             </div>
           </motion.div>
