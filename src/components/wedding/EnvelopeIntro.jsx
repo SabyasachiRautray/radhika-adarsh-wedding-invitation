@@ -159,18 +159,18 @@ const EnvelopeIntro = ({ onOpen }) => {
                 fontWeight: 500,
               }}
             >
-              You are cordially invited
+              With the Blessings of Lord Ganesha
             </p>
             <h2
               className="mb-1"
               style={{
-                fontFamily: "'Great Vibes', cursive",
+                fontFamily: "'Alex Brush', cursive",
                 color: "var(--clr-maroon, #6B0F1A)",
                 fontSize: "var(--fs-3xl, 2.25rem)",
                 lineHeight: 1.2,
               }}
             >
-              Subhalaxmi (Radhika)
+              Radhika
             </h2>
             <p
               style={{
@@ -184,14 +184,28 @@ const EnvelopeIntro = ({ onOpen }) => {
             </p>
             <h2
               style={{
-                fontFamily: "'Great Vibes', cursive",
+                fontFamily: "'Alex Brush', cursive",
                 color: "var(--clr-maroon, #6B0F1A)",
                 fontSize: "var(--fs-3xl, 2.25rem)",
                 lineHeight: 1.2,
               }}
             >
-              Adarsh (Bitu)
+              Adarsh
             </h2>
+
+            <p
+              className="text-center mt-3 max-w-xs"
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: "var(--clr-text-muted, #6B5C60)",
+                fontSize: "1.2rem",
+                // fontStyle: "italic",
+                lineHeight: 1.85,
+              }}
+            >
+              Together with our families, we invite you
+              to celebrate our wedding.
+            </p>
           </motion.div>
 
           {/* Open button */}

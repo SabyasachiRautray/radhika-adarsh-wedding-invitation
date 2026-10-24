@@ -191,13 +191,13 @@ const HeroSection = () => {
       >
         <h1
           style={{
-            fontFamily: "'Great Vibes', cursive",
+            fontFamily: "'Alex Brush', cursive",
             color: "var(--clr-gold-bright, #E5C76B)",
             fontSize: "var(--fs-4xl, 2.75rem)",
             lineHeight: 1.15,
           }}
         >
-          Adarsh Kumar
+          Adarsh
         </h1>
         <p
           className="mt-1"
@@ -207,7 +207,7 @@ const HeroSection = () => {
             fontSize: "var(--fs-xs, 0.7rem)",
           }}
         >
-          S/o. Mr. Pradip Kumar Dora & Mrs. Swapna Dora
+          S/o. Mrs. Swapna Dora & Mr. Pradip Kumar Dora
         </p>
       </motion.div>
 
@@ -230,13 +230,13 @@ const HeroSection = () => {
       >
         <h1
           style={{
-            fontFamily: "'Great Vibes', cursive",
+            fontFamily: "'Alex Brush', cursive",
             color: "var(--clr-gold-bright, #E5C76B)",
             fontSize: "var(--fs-4xl, 2.75rem)",
             lineHeight: 1.15,
           }}
         >
-          Radhika (Subhalaxmi)
+          Radhika
         </h1>
         <p
           className="mt-1"
@@ -246,8 +246,8 @@ const HeroSection = () => {
             fontSize: "var(--fs-xs, 0.7rem)",
           }}
         >
-          D/o. Mr. Mukund Ch. Nayak & Mrs. Mita Nayak<br />
-          <span style={{ fontSize: "0.85em", opacity: 0.8 }}>(Youngest daughter &bull; Gobindpur, Dhenkanal)</span>
+          D/o. Mrs. Mita Nayak & Mr. Mukund Ch. Nayak<br />
+          {/* <span style={{ fontSize: "0.85em", opacity: 0.8 }}>(Youngest daughter &bull; Gobindpur, Dhenkanal)</span> */}
         </p>
       </motion.div>
 
@@ -281,7 +281,7 @@ const HeroSection = () => {
             fontSize: "var(--fs-2xl, 1.75rem)",
           }}
         >
-          24 — 27 November, 2026
+          24 — 26 November, 2026
         </h2>
       </motion.div>
 

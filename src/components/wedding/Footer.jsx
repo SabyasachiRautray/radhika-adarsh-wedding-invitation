@@ -50,8 +50,7 @@ const Footer = () => {
         <h3
           className="mb-3"
           style={{
-            fontFamily: "'Great Vibes', cursive",
-            color: "var(--clr-gold-bright, #E5C76B)",
+            fontFamily: "'Alex Brush', cursive", color: "var(--clr-gold-bright, #E5C76B)",
             fontSize: "var(--fs-2xl, 1.75rem)",
           }}
         >
@@ -67,7 +66,7 @@ const Footer = () => {
             fontWeight: 500,
           }}
         >
-          24 — 27 November 2026 &bull; Bhubaneswar, Odisha
+          24 — 26 November 2026 &bull; Bhubaneswar, Odisha
         </p>
 
         {/* Divider */}

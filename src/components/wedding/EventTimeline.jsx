@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WEDDING } from "../../constants/testIds";
-import { MapPin, Clock, Shirt, ChevronRight, ChevronLeft, Navigation } from "lucide-react";
+import { MapPin, Clock, ChevronRight, ChevronLeft, Navigation } from "lucide-react";
 
 const HALDI_BG = "/haldi.webp";
 const SANGEET_BG = "/reception.webp";
@@ -14,15 +14,16 @@ const events = [
     date: "24th November 2026",
     title: "मेहंदी",
     tagline: "Pyar Ka Rang",
-    venue: "Our Residence Apartment Society Hall",
+    venue: "Tamarind Terraces, Bhubaneswar",
     venueKey: "residence",
+    googleMapsUrl: "https://www.google.com/maps/place/Tamarind+Terraces/@20.3371696,85.7980118,17z/data=!4m6!3m5!1s0x3a1908fa68d81933:0xe70c42d21524710e!8m2!3d20.3374267!4d85.7979575!16s%2Fg%2F11bbrk_9z8",
     image: MEHENDI_BG,
     accent: "#2D8B4E",
     items: [
       {
         name: "मेहंदी (Mehendi) — Pyar Ka Rang",
         time: "6:00 PM onwards",
-        location: "Our Residence Apartment Society Hall",
+        location: "Tamarind Terraces, Bhubaneswar",
         dressCode: "Festive Green / Ethnic",
       },
     ],
@@ -34,6 +35,7 @@ const events = [
     tagline: "Rango Ka Mela & Just Toast On The Coast",
     venue: "Hotel Lemon Tree, Bharatpur, Bhubaneswar",
     venueKey: "lemon-tree",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
     image: HALDI_BG,
     accent: "#E5A829",
     items: [
@@ -56,15 +58,16 @@ const events = [
     date: "26th November 2026",
     title: "बारात & विवाह (Reception)",
     tagline: "The Royal Chariot & The Sacred Union of Souls",
-    venue: "From Our Residence to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+    venue: "From Tamarind Terraces to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
     venueKey: "baraat-route",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
     image: SANGEET_BG,
     accent: "#C9A84C",
     items: [
       {
         name: "बारात (Baraat) — The Royal Chariot",
         time: "4:00 PM",
-        location: "From Our Residence to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+        location: "From Tamarind Terraces to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
         dressCode: "Traditional / Regal",
       },
       {
@@ -73,21 +76,28 @@ const events = [
         location: "Tangerine Grand Hall 1 & 2, (1st & 5th Floor), Hotel Lemon Tree, Bharatpur, Bhubaneswar",
         dressCode: "Royal Traditional Elegance",
       },
+      {
+        name: "शुभ विवाह मुहूर्त (Wedding Muhurtam)",
+        time: "5:02 AM (27 Nov, pre-dawn)",
+        location: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree",
+        dressCode: "Traditional Auspicious Attire",
+      },
     ],
   },
   {
     day: "Day 4",
     date: "27th November 2026",
     title: "शुभ विवाह मुहूर्त",
-    tagline: "The Auspicious Muhurtam",
+    tagline: "The Auspicious Muhurtam (Pre-Dawn)",
     venue: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree, Bharatpur, Bhubaneswar",
     venueKey: "lemon-tree",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
     image: TOAST_BG,
     accent: "#6B0F1A",
     items: [
       {
         name: "शुभ विवाह मुहूर्त (Wedding Muhurtam)",
-        time: "5:02 AM",
+        time: "5:02 AM (27 Nov, pre-dawn)",
         location: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree",
         dressCode: "Traditional Auspicious Attire",
       },
@@ -292,39 +302,33 @@ const EventTimeline = () => {
                             </span>
                           </div>
                         )}
-                        {item.dressCode && (
+                        {/* {item.dressCode && (
                           <div className="flex items-center gap-1.5 bg-[rgba(255,255,255,0.1)] px-3 py-1 rounded-full border border-[rgba(255,255,255,0.2)]">
                             <Shirt size={14} className="text-gray-300" />
                             <span className="font-sans text-xs font-medium text-gray-200">
                               Dress: <strong className="text-white">{item.dressCode}</strong>
                             </span>
                           </div>
-                        )}
+                        )} */}
                       </div>
                     </div>
                   ))}
                 </div>
 
-                {/* Centered View on Map Action */}
-                <div className="mt-6 pt-4 border-t border-[rgba(255,255,255,0.1)] flex justify-center items-center w-full">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      window.dispatchEvent(
-                        new CustomEvent("select-wedding-venue", {
-                          detail: { venueKey: currentEvent.venueKey },
-                        })
-                      );
-                      const el = document.getElementById("venue-location");
-                      if (el) {
-                        el.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-[var(--clr-maroon-deep)] bg-[var(--clr-gold)] hover:bg-[var(--clr-gold-bright)] shadow-[0_4px_16px_rgba(201,168,76,0.3)] transition-all duration-300 hover:scale-105 cursor-pointer text-center"
-                  >
-                    <Navigation size={14} />
-                    <span>View Venue on Map</span>
-                  </button>
+                {/* Map Actions */}
+                <div className="mt-6 pt-4 border-t border-[rgba(255,255,255,0.1)] flex flex-wrap justify-center gap-2.5 w-full">
+                  {/* Direct Google Maps link */}
+                  {currentEvent.googleMapsUrl && (
+                    <a
+                      href={currentEvent.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider text-[var(--clr-maroon-deep)] bg-[var(--clr-gold)] hover:bg-[var(--clr-gold-bright)] shadow-[0_4px_16px_rgba(201,168,76,0.3)] transition-all duration-300 hover:scale-105 no-underline text-center"
+                    >
+                      <Navigation size={14} />
+                      <span>Open in Google Maps</span>
+                    </a>
+                  )}
                 </div>
 
               </div>

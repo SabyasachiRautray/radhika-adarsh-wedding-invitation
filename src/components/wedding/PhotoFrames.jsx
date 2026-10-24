@@ -44,26 +44,31 @@ const PhotoFrames = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p
-            className="uppercase tracking-[0.25em] mb-2"
-            style={{
-              fontFamily: "'Outfit', sans-serif",
-              color: "var(--clr-text-muted, #6B5C60)",
-              fontSize: "var(--fs-xs, 0.65rem)",
-              fontWeight: 600,
-            }}
-          >
-            The Couple
-          </p>
+
           <h2
             style={{
               fontFamily: "'Great Vibes', cursive",
               color: "var(--clr-maroon, #6B0F1A)",
-              fontSize: "var(--fs-3xl, 2.25rem)",
+              fontSize: "clamp(2.8rem, 5vw, 4rem)",
+              lineHeight: 1.2,
             }}
           >
-            Our Love Story
+            A Tale of Two Hearts
           </h2>
+
+          <p
+            className="max-w-md mx-auto"
+            style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: "var(--clr-text-muted, #6B5C60)",
+              fontSize: "1.15rem",
+              lineHeight: 1.7,
+              fontStyle: "italic",
+            }}
+          >
+            Every love story is beautiful, but ours is our favourite.
+          </p>
+
           <div
             className="mx-auto mt-4"
             style={{
@@ -77,7 +82,7 @@ const PhotoFrames = () => {
 
         {/* Collage Container */}
         <div className="relative w-full flex flex-col md:block items-center justify-center gap-16 md:gap-0 md:h-[800px] pt-4 pb-16 md:py-0">
-          
+
           {/* Bride - Top Left (Floating overlapping on desktop, Top on mobile) */}
           <motion.div
             className="relative md:absolute z-20 w-[220px] h-[280px] md:w-[220px] md:h-[300px] md:left-[5%] lg:left-[15%] md:top-[10%] self-start md:self-auto ml-2 md:ml-0"
@@ -91,13 +96,13 @@ const PhotoFrames = () => {
               <div className="w-full h-full overflow-hidden relative">
                 <img
                   src={BRIDE_PHOTO}
-                  alt="Subhalaxmi Nayak"
+                  alt="Radhika Nayak"
                   className="w-full h-full object-cover scale-145 transition-transform duration-700 group-hover:scale-[1.50]"
                   loading="lazy"
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-[var(--clr-maroon)] text-[var(--clr-gold-bright)] px-4 py-1.5 rounded-sm shadow-lg rotate-[-5deg]">
-                <span className="font-display text-lg sm:text-xl">Subhalaxmi</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display text-lg sm:text-xl">Radhika</span>
               </div>
             </div>
           </motion.div>
@@ -149,33 +154,33 @@ const PhotoFrames = () => {
               <div className="w-full h-full overflow-hidden relative">
                 <img
                   src={GROOM_PHOTO}
-                  alt="Adarsh Kumar"
+                  alt="Adarsh"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
               </div>
               <div className="absolute -top-4 -left-4 bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] px-4 py-1.5 rounded-sm shadow-lg rotate-[5deg]">
-                <span className="font-display text-lg sm:text-xl font-semibold">Adarsh</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display  text-lg sm:text-xl font-semibold">Adarsh</span>
               </div>
             </div>
           </motion.div>
 
           {/* Floating Text Accents */}
-          <motion.div 
+          <motion.div
             className="absolute z-0 left-[10%] bottom-[20%] opacity-40 hidden md:block"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.4 }}
             transition={{ delay: 0.6 }}
           >
-             <h4 style={{ fontFamily: "'Great Vibes', cursive", fontSize: "4rem", color: "var(--clr-gold)" }}>Two Souls</h4>
+            <h4 style={{ fontFamily: "'Great Vibes', cursive", fontSize: "4rem", color: "var(--clr-gold)" }}>Two Souls</h4>
           </motion.div>
-          <motion.div 
+          <motion.div
             className="absolute z-0 right-[10%] top-[20%] opacity-40 hidden md:block"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 0.4 }}
             transition={{ delay: 0.8 }}
           >
-             <h4 style={{ fontFamily: "'Great Vibes', cursive", fontSize: "4rem", color: "var(--clr-maroon)" }}>One Heart</h4>
+            <h4 style={{ fontFamily: "'Great Vibes', cursive", fontSize: "4rem", color: "var(--clr-maroon)" }}>One Heart</h4>
           </motion.div>
 
         </div>
