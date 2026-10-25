@@ -54,7 +54,7 @@ const Footer = () => {
             fontSize: "var(--fs-2xl, 1.75rem)",
           }}
         >
-          Adarsh &amp; Radhika
+          Radhika &amp; Adarsh
         </h3>
 
         <p

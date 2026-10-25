@@ -6,7 +6,7 @@ import { WEDDING } from "../../constants/testIds";
    Time calculation utility
    ═══════════════════════════════════════ */
 const calculateTimeLeft = () => {
-  const weddingDate = new Date("2026-11-24T18:00:00+05:30");
+  const weddingDate = new Date("2026-11-24T13:00:00+05:30");
   const now = new Date();
   const diff = weddingDate - now;
 
@@ -179,7 +179,7 @@ const HeroSection = () => {
           fontWeight: 500,
         }}
       >
-        Together with their families
+        {/* Together with their families */}
       </motion.p>
 
       {/* Groom Name — slides in from left */}
@@ -197,7 +197,7 @@ const HeroSection = () => {
             lineHeight: 1.15,
           }}
         >
-          Adarsh
+          Radhika
         </h1>
         <p
           className="mt-1"
@@ -207,7 +207,7 @@ const HeroSection = () => {
             fontSize: "var(--fs-xs, 0.7rem)",
           }}
         >
-          S/o. Mrs. Swapna Dora & Mr. Pradip Kumar Dora
+          D/o. Mrs. Mita Nayak & Mr. Mukund Ch. Nayak
         </p>
       </motion.div>
 
@@ -236,7 +236,7 @@ const HeroSection = () => {
             lineHeight: 1.15,
           }}
         >
-          Radhika
+          Adarsh
         </h1>
         <p
           className="mt-1"
@@ -246,7 +246,7 @@ const HeroSection = () => {
             fontSize: "var(--fs-xs, 0.7rem)",
           }}
         >
-          D/o. Mrs. Mita Nayak & Mr. Mukund Ch. Nayak<br />
+          S/o. Mrs. Swapna Dora & Mr. Pradip Kumar Dora<br />
           {/* <span style={{ fontSize: "0.85em", opacity: 0.8 }}>(Youngest daughter &bull; Gobindpur, Dhenkanal)</span> */}
         </p>
       </motion.div>

@@ -12,18 +12,18 @@ const events = [
   {
     day: "Day 1",
     date: "24th November 2026",
-    title: "मेहंदी",
-    tagline: "Pyar Ka Rang",
-    venue: "Tamarind Terraces, Bhubaneswar",
+    title: "मेहंदी & Reception",
+    tagline: "Mehndi & Reception",
+    venue: "Our Residence, New Friends Colony, Gobindpur, Dhenkanal",
     venueKey: "residence",
-    googleMapsUrl: "https://www.google.com/maps/place/Tamarind+Terraces/@20.3371696,85.7980118,17z/data=!4m6!3m5!1s0x3a1908fa68d81933:0xe70c42d21524710e!8m2!3d20.3374267!4d85.7979575!16s%2Fg%2F11bbrk_9z8",
+    googleMapsUrl: "https://www.google.com/maps?q=20.608530044555664,85.63700866699219&z=17&hl=en",
     image: MEHENDI_BG,
     accent: "#2D8B4E",
     items: [
       {
-        name: "मेहंदी (Mehendi) — Pyar Ka Rang",
-        time: "6:00 PM onwards",
-        location: "Tamarind Terraces, Bhubaneswar",
+        name: "मेहंदी (Mehndi) & Reception",
+        time: "1:00 PM onwards",
+        location: "Our Residence, New Friends Colony, Gobindpur, Dhenkanal",
         dressCode: "Festive Green / Ethnic",
       },
     ],
@@ -56,26 +56,20 @@ const events = [
   {
     day: "Day 3",
     date: "26th November 2026",
-    title: "बारात & विवाह (Reception)",
-    tagline: "The Royal Chariot & The Sacred Union of Souls",
+    title: " विवाह ",
+    // tagline: "The Royal Chariot & The Sacred Union of Souls",
     venue: "From Tamarind Terraces to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
     venueKey: "baraat-route",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
     image: SANGEET_BG,
     accent: "#C9A84C",
     items: [
-      {
-        name: "बारात (Baraat) — The Royal Chariot",
-        time: "4:00 PM",
-        location: "From Tamarind Terraces to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
-        dressCode: "Traditional / Regal",
-      },
-      {
-        name: "विवाह & Reception — The Sacred Union of Souls",
-        time: "7:30 PM onwards",
-        location: "Tangerine Grand Hall 1 & 2, (1st & 5th Floor), Hotel Lemon Tree, Bharatpur, Bhubaneswar",
-        dressCode: "Royal Traditional Elegance",
-      },
+      // {
+      //   name: "विवाह — The Sacred Union of Souls",
+      //   time: "7:30 PM onwards",
+      //   location: "Tangerine Grand Hall 1 & 2, (1st & 5th Floor), Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+      //   dressCode: "Royal Traditional Elegance",
+      // },
       {
         name: "शुभ विवाह मुहूर्त (Wedding Muhurtam)",
         time: "5:02 AM (27 Nov, pre-dawn)",
@@ -84,25 +78,25 @@ const events = [
       },
     ],
   },
-  {
-    day: "Day 4",
-    date: "27th November 2026",
-    title: "शुभ विवाह मुहूर्त",
-    tagline: "The Auspicious Muhurtam (Pre-Dawn)",
-    venue: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree, Bharatpur, Bhubaneswar",
-    venueKey: "lemon-tree",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
-    image: TOAST_BG,
-    accent: "#6B0F1A",
-    items: [
-      {
-        name: "शुभ विवाह मुहूर्त (Wedding Muhurtam)",
-        time: "5:02 AM (27 Nov, pre-dawn)",
-        location: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree",
-        dressCode: "Traditional Auspicious Attire",
-      },
-    ],
-  },
+  // {
+  //   day: "Day 4",
+  //   date: "27th November 2026",
+  //   title: "शुभ विवाह मुहूर्त",
+  //   tagline: "The Auspicious Muhurtam (Pre-Dawn)",
+  //   venue: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+  //   venueKey: "lemon-tree",
+  //   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
+  //   image: TOAST_BG,
+  //   accent: "#6B0F1A",
+  //   items: [
+  //     {
+  //       name: "शुभ विवाह मुहूर्त (Wedding Muhurtam)",
+  //       time: "5:02 AM (27 Nov, pre-dawn)",
+  //       location: "Tangerine Grand Hall 1 & 2, Hotel Lemon Tree",
+  //       dressCode: "Traditional Auspicious Attire",
+  //     },
+  //   ],
+  // },
 ];
 
 /* ═══════════════════════════════════════════════════════

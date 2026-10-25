@@ -26,23 +26,22 @@ const VENUES = {
     events: [
       { icon: "💛", label: "Haldi", time: "25 Nov · 10 AM", at: "Poolside" },
       { icon: "🍸", label: "Sangeet", time: "25 Nov · 6:30 PM", at: "Tangerine Hall 2" },
-      { icon: "💍", label: "Reception & Vivah", time: "26 Nov · 7:30 PM", at: "Tangerine Hall 1 & 2" },
-      { icon: "🙏", label: "Muhurtam", time: "26 Nov · 5:02 AM*", at: "Tangerine Hall 1 & 2" },
+      { icon: "💍", label: "Vivah", time: "26 Nov · 7:30 PM", at: "Tangerine Hall 1 & 2" },
+      { icon: "🙏", label: "Muhurtam", time: "27 Nov · 5:02 AM*", at: "Tangerine Hall 1 & 2" },
     ],
   },
   "residence": {
     id: "residence",
-    name: "Tamarind Terraces",
-    subtitle: "Bhubaneswar, Odisha",
-    address: "Tamarind Terraces, Bhubaneswar, Odisha",
+    name: "Our Residence",
+    subtitle: "Gobindpur, Dhenkanal",
+    address: "Our Residence, New Friends Colony, Gobindpur, Dhenkanal",
     googleMapsUrl:
-      "https://www.google.com/maps/place/Tamarind+Terraces/@20.3371696,85.7980118,17z/data=!4m6!3m5!1s0x3a1908fa68d81933:0xe70c42d21524710e!8m2!3d20.3374267!4d85.7979575!16s%2Fg%2F11bbrk_9z8",
+      "https://www.google.com/maps?q=20.608530044555664,85.63700866699219&z=17&hl=en",
     embedUrl:
-      "https://www.google.com/maps?q=20.3374267,85.7979575&output=embed",
+      "https://maps.google.com/maps?q=20.608530044555664,85.63700866699219&output=embed",
     icon: "🏡",
     events: [
-      { icon: "🌿", label: "Mehendi", time: "24 Nov · 6 PM", at: "Tamarind Terraces" },
-      { icon: "👑", label: "Baraat Flag-off", time: "26 Nov · 4 PM", at: "Tamarind Terraces" },
+      { icon: "🌿", label: "Mehndi & Reception", time: "24 Nov · 1:00 PM", at: "Our Residence" },
     ],
   },
 };
@@ -153,8 +152,8 @@ const VenueLocation = () => {
                 key={tab.key}
                 onClick={() => setSelectedVenueKey(tab.key)}
                 className={`flex items-center gap-1.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold border transition-all duration-200 cursor-pointer ${isActive
-                    ? "bg-[var(--clr-maroon)] text-[var(--clr-gold-bright)] border-[var(--clr-gold)] shadow-md scale-105"
-                    : "bg-[var(--clr-ivory)] text-[var(--clr-text)] border-[rgba(201,168,76,0.3)] hover:border-[var(--clr-gold)]"
+                  ? "bg-[var(--clr-maroon)] text-[var(--clr-gold-bright)] border-[var(--clr-gold)] shadow-md scale-105"
+                  : "bg-[var(--clr-ivory)] text-[var(--clr-text)] border-[rgba(201,168,76,0.3)] hover:border-[var(--clr-gold)]"
                   }`}
               >
                 {tab.icon}
