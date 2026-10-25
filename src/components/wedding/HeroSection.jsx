@@ -197,7 +197,7 @@ const HeroSection = () => {
             lineHeight: 1.15,
           }}
         >
-          Radhika
+          Subhalaxmi  Nayak (Radhika)
         </h1>
         <p
           className="mt-1"
@@ -236,7 +236,7 @@ const HeroSection = () => {
             lineHeight: 1.15,
           }}
         >
-          Adarsh
+          Adarsh Kumar (Adi)
         </h1>
         <p
           className="mt-1"

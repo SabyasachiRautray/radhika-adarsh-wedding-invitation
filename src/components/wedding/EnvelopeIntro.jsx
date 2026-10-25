@@ -66,7 +66,7 @@ const EnvelopeIntro = ({ onOpen }) => {
   return (
     <motion.div
       data-testid={WEDDING.introOverlay}
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-x-hidden overflow-y-hidden md:overflow-y-auto"
       style={{
         background:
           "radial-gradient(ellipse at center, rgba(107,15,26,0.03) 0%, rgba(61,8,20,0.06) 60%, rgba(61,8,20,0.10) 100%), var(--clr-cream, #FDF6EC)",
@@ -95,7 +95,7 @@ const EnvelopeIntro = ({ onOpen }) => {
       />
 
       {showContent && (
-        <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 max-w-sm mx-auto">
+        <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 max-w-sm mx-auto my-auto py-8">
           {/* Ganesha image — Odia Pattachitra style */}
           <motion.div
             initial={{ scale: 0.6, opacity: 0 }}
@@ -170,7 +170,7 @@ const EnvelopeIntro = ({ onOpen }) => {
                 lineHeight: 1.2,
               }}
             >
-              Radhika
+              Subhalaxmi  Nayak (Radhika)
             </h2>
             <p
               style={{
@@ -190,7 +190,7 @@ const EnvelopeIntro = ({ onOpen }) => {
                 lineHeight: 1.2,
               }}
             >
-              Adarsh
+              Adarsh Kumar (Adi)
             </h2>
 
             <p

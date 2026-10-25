@@ -103,7 +103,7 @@ const PhotoFrames = () => {
 
               </div>
               <div className="absolute -bottom-4 -right-4 bg-[var(--clr-maroon)] text-[var(--clr-gold-bright)] px-4 py-1.5 rounded-sm shadow-lg rotate-[-5deg]">
-                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display text-lg sm:text-xl">Radhika</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display text-lg sm:text-xl">Subhalaxmi  Nayak (Radhika)</span>
               </div>
             </div>
           </motion.div>
@@ -161,7 +161,7 @@ const PhotoFrames = () => {
                 />
               </div>
               <div className="absolute -top-4 -left-4 bg-[var(--clr-gold)] text-[var(--clr-maroon-deep)] px-4 py-1.5 rounded-sm shadow-lg rotate-[5deg]">
-                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display  text-lg sm:text-xl font-semibold">Adarsh</span>
+                <span style={{ fontFamily: "'Alex Brush', cursive" }} className="font-display  text-lg sm:text-xl font-semibold">Adarsh Kumar (Adi)</span>
               </div>
             </div>
           </motion.div>

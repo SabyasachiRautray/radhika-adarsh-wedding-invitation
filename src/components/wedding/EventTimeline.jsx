@@ -46,7 +46,7 @@ const events = [
         dressCode: "Vibrant Yellow / Sunny Traditional",
       },
       {
-        name: "शाम शानदार — Just Toast On The Coast",
+        name: "शाम शानदार (Sangeet) — Just Toast On The Coast",
         time: "6:30 PM onwards",
         location: "Tangerine Grand Hall 2, Hotel Lemon Tree, Bharatpur, BBSR",
         dressCode: "Evening Cocktail & Glamour",
@@ -58,7 +58,7 @@ const events = [
     date: "26th November 2026",
     title: " विवाह ",
     // tagline: "The Royal Chariot & The Sacred Union of Souls",
-    venue: "From Tamarind Terraces to Hotel Lemon Tree, Bharatpur, Bhubaneswar",
+    venue: " Hotel Lemon Tree, Bharatpur, Bhubaneswar",
     venueKey: "baraat-route",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
     image: SANGEET_BG,

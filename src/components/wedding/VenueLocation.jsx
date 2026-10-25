@@ -13,23 +13,6 @@ import {
    VENUES DATA
    ═══════════════════════════════════════════════════ */
 const VENUES = {
-  "lemon-tree": {
-    id: "lemon-tree",
-    name: "Hotel Lemon Tree",
-    subtitle: "Bharatpur, Bhubaneswar",
-    address: "Hotel Lemon Tree, Bharatpur, Bhubaneswar, Odisha — 751003",
-    googleMapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
-    embedUrl:
-      "https://www.google.com/maps?q=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar&output=embed",
-    icon: "🍋",
-    events: [
-      { icon: "💛", label: "Haldi", time: "25 Nov · 10 AM", at: "Poolside" },
-      { icon: "🍸", label: "Sangeet", time: "25 Nov · 6:30 PM", at: "Tangerine Hall 2" },
-      { icon: "💍", label: "Vivah", time: "26 Nov · 7:30 PM", at: "Tangerine Hall 1 & 2" },
-      { icon: "🙏", label: "Muhurtam", time: "27 Nov · 5:02 AM*", at: "Tangerine Hall 1 & 2" },
-    ],
-  },
   "residence": {
     id: "residence",
     name: "Our Residence",
@@ -44,6 +27,24 @@ const VENUES = {
       { icon: "🌿", label: "Mehndi & Reception", time: "24 Nov · 1:00 PM", at: "Our Residence" },
     ],
   },
+  "lemon-tree": {
+    id: "lemon-tree",
+    name: "Hotel Lemon Tree",
+    subtitle: "Bharatpur, Bhubaneswar",
+    address: "Hotel Lemon Tree, Bharatpur, Bhubaneswar, Odisha — 751003",
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar",
+    embedUrl:
+      "https://www.google.com/maps?q=Lemon+Tree+Hotel+Bharatpur+Bhubaneswar&output=embed",
+    icon: "🍋",
+    events: [
+      { icon: "💛", label: "Haldi", time: "25 Nov · 10 AM", at: "Poolside" },
+      { icon: "🍸", label: "Sangeet", time: "25 Nov · 6:30 PM", at: "Tangerine Hall 2" },
+      // { icon: "💍", label: "Vivah", time: "26 Nov · 7:30 PM", at: "Tangerine Hall 1 & 2" },
+      { icon: "🙏", label: "Muhurtam", time: "27 Nov · 5:02 AM*", at: "Tangerine Hall 1 & 2" },
+    ],
+  },
+
 };
 
 /* ═══════════════════════════════════════════════════
@@ -76,8 +77,9 @@ const VenueLocation = () => {
   };
 
   const TABS = [
-    { key: "lemon-tree", label: "Lemon Tree", icon: <Home size={14} /> },
     { key: "residence", label: "Residence", icon: <MapPin size={14} /> },
+    { key: "lemon-tree", label: "Lemon Tree", icon: <Home size={14} /> },
+
   ];
 
   return (
